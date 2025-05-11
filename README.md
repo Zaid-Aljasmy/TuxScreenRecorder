@@ -21,7 +21,7 @@ It provides a simple and user-friendly interface built with `PyQt6`.
 ## 🚀 Features
 
 - Easy-to-use interface with PyQt6  
-- Supports recording full screen or custom areas  
+- Supports recording full screen or custom areas (soon!)
 - Save recordings as `.mp4` using `ffmpeg`  
 - Simple and clean tabbed layout
 
