@@ -1,7 +1,7 @@
 # 🎥 TuxScreenRecorder
 
 **TuxScreenRecorder** is a lightweight Python GUI application for recording your screen on Linux using `ffmpeg`.  
-It provides a simple and user-friendly interface built with `Tkinter`.
+It provides a simple and user-friendly interface built with `PyQt6`.
 
 ---
 
@@ -20,7 +20,7 @@ It provides a simple and user-friendly interface built with `Tkinter`.
 
 ## 🚀 Features
 
-- Easy-to-use interface with Tkinter  
+- Easy-to-use interface with PyQt6  
 - Supports recording full screen or custom areas  
 - Save recordings as `.mp4` using `ffmpeg`  
 - Simple and clean tabbed layout
@@ -32,7 +32,7 @@ It provides a simple and user-friendly interface built with `Tkinter`.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/TuxScreenRecorder.git
+git clone https://github.com/Zaid-Aljasmy/TuxScreenRecorder.git
 cd TuxScreenRecorder
 ```
 
