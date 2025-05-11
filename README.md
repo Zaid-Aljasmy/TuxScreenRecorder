@@ -5,7 +5,7 @@ It provides a simple and user-friendly interface built with `PyQt6`.
 
 ---
 
-## 🖼️ Screenshots
+##  Screenshots
 
 ### Recorder Tab
 ![Recorder Tab](TSRRecorderTab.png)
@@ -18,7 +18,7 @@ It provides a simple and user-friendly interface built with `PyQt6`.
 
 ---
 
-## 🚀 Features
+##  Features
 
 - Easy-to-use interface with PyQt6  
 - Supports recording full screen or custom areas (soon!)
@@ -27,7 +27,7 @@ It provides a simple and user-friendly interface built with `PyQt6`.
 
 ---
 
-## 📦 Installation
+##  Installation
 
 ### 1. Clone the Repository
 
@@ -57,7 +57,7 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Running the App
+## ▶ Running the App
 
 ```bash
 python main.py
@@ -73,18 +73,18 @@ sudo apt install ffmpeg
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ---
 
-## 🧠 Author
+##  Author
 
 Developed by [Zaid Aljasmy](https://github.com/Zaid-Aljasmy)
