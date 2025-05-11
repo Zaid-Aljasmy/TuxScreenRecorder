@@ -8,13 +8,13 @@ It provides a simple and user-friendly interface built with `Tkinter`.
 ## 🖼️ Screenshots
 
 ### Recorder Tab
-![Recorder Tab](assets/TSRRecorderTab.png)
+![Recorder Tab](TSRRecorderTab.png)
 
 ### Info Tab
-![Info Tab](assets/TSR-InfoTab.png)
+![Info Tab](/TSR-InfoTab.png)
 
 ### Logo App
-![Logo App Tab](assets/appiamge.png)
+![Logo](Logo.png)
 
 ---
 
