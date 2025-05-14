@@ -8,16 +8,16 @@ It provides a simple and user-friendly interface built with `PyQt6`.
 ##  Screenshots
 
 ### Logo App
-![Logo](logo.jpg)
+![App Logo](logo.jpg)
 
 ### Recorder Tab
 ![Recorder Tab](TSRRecorderTab.png)
 
 ### Informations Tab
-![Informations Tab](/TSR-InfoTab.png)
+![Informations Tab](TSR-InfoTab.png)
 
 ### Appimage
-![Appiamge soon](appiamge.png)
+![AppImage coming soon!](appiamge.png)
 ---
 
 ##  Features
