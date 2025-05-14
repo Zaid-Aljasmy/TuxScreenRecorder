@@ -17,7 +17,7 @@ It provides a simple and user-friendly interface built with `PyQt6`.
 ![Informations Tab](/TSR-InfoTab.png)
 
 ### Appimage
-![Appiamge soon!](appiamge.png)
+![Appiamge soon](appiamge.png)
 ---
 
 ##  Features
