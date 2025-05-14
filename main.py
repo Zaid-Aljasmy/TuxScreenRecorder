@@ -19,23 +19,23 @@ class ScreenRecorder(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Tux Screen Recorder")
-        self.setGeometry(100, 100, 700, 650) # Increased height to accommodate new elements
+        self.setGeometry(100, 100, 700, 650)
 
-        # Default output file path
+
         self.output_file = os.path.expanduser("~/Videos/TuxScreenRecorder")
-        self.recording_region = "full_screen" # Default recording region
+        self.recording_region = "full_screen"
 
-        # Initialize preview_frame_rate BEFORE calling setup_info_tab
-        self.preview_frame_rate = 10 # Default preview frame rate
 
-        # Create a tab widget with two tabs: Recorder and Information
+        self.preview_frame_rate = 10
+
+
         self.tabs = QTabWidget()
         self.recorder_tab = QWidget()
         self.info_tab = QWidget()
         self.tabs.addTab(self.recorder_tab, "Recorder")
         self.tabs.addTab(self.info_tab, "Information")
 
-        # Setup UI for both tabs
+
         self.setup_recorder_tab()
         self.setup_info_tab()
 
@@ -48,7 +48,7 @@ class ScreenRecorder(QWidget):
         self.update_timer = QTimer()
         self.update_timer.timeout.connect(self.update_info)
 
-        # Timer for live preview updates (screen capture)
+
         self.live_preview_timer = QTimer()
         self.live_preview_timer.timeout.connect(self.update_live_preview)
         self.live_preview_running = False
@@ -56,7 +56,7 @@ class ScreenRecorder(QWidget):
     def setup_recorder_tab(self):
         layout = QVBoxLayout()
 
-        # Recording region selection
+
         recording_region_group = QGroupBox("Recording Region")
         recording_region_layout = QVBoxLayout()
         self.full_screen_radio = QRadioButton("Full Screen")
@@ -69,14 +69,14 @@ class ScreenRecorder(QWidget):
         recording_region_group.setLayout(recording_region_layout)
         layout.addWidget(recording_region_group)
 
-        # Frame rate selection
+
         self.label_fps = QLabel("Select Frame Rate (FPS):")
         layout.addWidget(self.label_fps)
         self.fps_combo = QComboBox()
         self.fps_combo.addItems(["60", "30", "24", "Unlimited"])
         layout.addWidget(self.fps_combo)
 
-        # Video container selection with warning
+
         self.label_container = QLabel("Select Video Container:")
         layout.addWidget(self.label_container)
         self.container_combo = QComboBox()
@@ -88,12 +88,12 @@ class ScreenRecorder(QWidget):
         self.label_container_warning.setStyleSheet("color: red;")
         layout.addWidget(self.label_container_warning)
 
-        # Audio recording option
+
         self.audio_checkbox = QCheckBox("Record Audio")
         self.audio_checkbox.toggled.connect(self.update_audio_controls_state)
         layout.addWidget(self.audio_checkbox)
 
-        # Audio source selection
+
         self.label_audio_source = QLabel("Select Audio Input Source:")
         layout.addWidget(self.label_audio_source)
         self.audio_source_combo = QComboBox()
@@ -103,17 +103,17 @@ class ScreenRecorder(QWidget):
         ])
         layout.addWidget(self.audio_source_combo)
 
-        # Audio codec selection
+
         self.label_audio_codec = QLabel("Select Audio Codec:")
         layout.addWidget(self.label_audio_codec)
         self.audio_codec_combo = QComboBox()
         self.audio_codec_combo.addItems(["mp3", "aac", "vorbis"])
         layout.addWidget(self.audio_codec_combo)
 
-        # Initialize audio controls state
+
         self.update_audio_controls_state(self.audio_checkbox.isChecked())
 
-        # Output path selection
+
         output_path_layout = QHBoxLayout()
         self.output_path_label = QLabel("Output Path:")
         output_path_layout.addWidget(self.output_path_label)
@@ -124,7 +124,7 @@ class ScreenRecorder(QWidget):
         output_path_layout.addWidget(self.browse_button)
         layout.addLayout(output_path_layout)
 
-        # Start/Stop/Cancel buttons
+
         button_layout = QHBoxLayout()
         self.start_button = QPushButton("Start Recording")
         self.start_button.clicked.connect(self.start_recording)
@@ -150,26 +150,26 @@ class ScreenRecorder(QWidget):
         """Sets the recording region based on user selection."""
         self.recording_region = region
         if region == "window":
-            print("Window selection not yet implemented.") # Placeholder for future functionality
+            print("Window selection not yet implemented.")
 
     def generate_timestamped_filename(self, base_path):
         """Generates a unique filename with timestamp to prevent overwriting existing files."""
-        # Get the directory and base filename without extension
+
         directory = os.path.dirname(base_path)
         filename = os.path.basename(base_path)
         name, ext = os.path.splitext(filename)
         
-        # If no extension is provided, use the currently selected container
+
         if not ext:
             ext = f".{self.container_combo.currentText()}"
         
-        # Generate timestamp in format YYYY-MM-DD_HH-MM-SS
+
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         
-        # Create new filename with timestamp
+
         new_filename = f"{name}_{timestamp}{ext}"
         
-        # Return the full path with the new filename
+
         return os.path.join(directory, new_filename)
 
     def browse_output_path(self):
@@ -181,12 +181,12 @@ class ScreenRecorder(QWidget):
         )
         if file_path:
             self.output_path_edit.setText(file_path)
-            self.output_file = file_path # Update the output_file variable
+            self.output_file = file_path
 
     def setup_info_tab(self):
         layout = QVBoxLayout()
 
-        # Recording Information Group
+
         info_group = QGroupBox("Recording Information")
         info_layout = QVBoxLayout()
         self.label_file_name = QLabel(f"File Name: {os.path.basename(self.output_file)}")
@@ -202,7 +202,7 @@ class ScreenRecorder(QWidget):
         info_group.setLayout(info_layout)
         layout.addWidget(info_group)
 
-        # Live Preview Section for Screen Capture
+
         live_group = QGroupBox("Live Preview")
         live_layout = QVBoxLayout()
         self.live_preview_display = QLabel("Live preview not running")
@@ -213,27 +213,27 @@ class ScreenRecorder(QWidget):
         self.toggle_live_preview_button.clicked.connect(self.toggle_live_preview)
         live_layout.addWidget(self.toggle_live_preview_button)
 
-        # Preview Frame Rate Selection
+
         preview_rate_layout = QHBoxLayout()
         preview_rate_label = QLabel("Preview Frame Rate (FPS):")
         preview_rate_layout.addWidget(preview_rate_label)
         self.preview_fps_combo = QComboBox()
-        self.preview_fps_combo.addItems([str(i) for i in range(10, 31)]) # Options from 10 to 30
+        self.preview_fps_combo.addItems([str(i) for i in range(10, 31)])
         preview_rate_layout.addWidget(self.preview_fps_combo)
         live_layout.addLayout(preview_rate_layout)
 
-        # Set the current text and connect the signal AFTER the combo box is added to the layout
+
         self.preview_fps_combo.setCurrentText(str(self.preview_frame_rate))
         self.preview_fps_combo.currentIndexChanged.connect(self.set_preview_frame_rate)
 
         self.preview_note_label = QLabel("Note: previewing requires extra CPU time (especially at high frame rates).")
-        self.preview_note_label.setStyleSheet("font-size: 14px; color: yellow;")
+        self.preview_note_label.setStyleSheet("font-size: 14px; color: orange;")
         live_layout.addWidget(self.preview_note_label)
 
         live_group.setLayout(live_layout)
         layout.addWidget(live_group)
 
-        # Initialize preview controls state
+
         self.preview_fps_combo.setEnabled(False)
 
         self.info_tab.setLayout(layout)
@@ -246,24 +246,24 @@ class ScreenRecorder(QWidget):
 
     def start_recording(self):
         """Starts the screen recording process with selected parameters and timestamped filename."""
-        resolution = "1920x1080" # Default resolution for full screen recording
+        resolution = "1920x1080"
         if self.recording_region == "window":
-            print("Window recording resolution needs to be determined.") # Future implementation
-            return # Prevent recording if window selection isn't implemented
+            print("Window recording resolution needs to be determined.")
+            return
 
         fps = self.fps_combo.currentText()
         container = self.container_combo.currentText()
         
-        # Get base output path from text edit
+
         base_output_path = self.output_path_edit.text()
         
-        # Generate a timestamped filename to prevent overwriting existing files
+
         self.output_file = self.generate_timestamped_filename(base_output_path)
         
-        # Update the UI to show the actual filename being used
+
         self.label_file_name.setText(f"File Name: {os.path.basename(self.output_file)}")
 
-        # Setup audio input if recording audio
+
         if self.audio_checkbox.isChecked():
             selected_source = self.audio_source_combo.currentText()
             if selected_source == "Monitor of built-in audio analog stereo":
@@ -283,42 +283,42 @@ class ScreenRecorder(QWidget):
             audio_input = ""
             audio_codec_option = ""
 
-        # Build the ffmpeg command with proper encoding options
+
         command = (
             f"ffmpeg -y -video_size {resolution} -framerate {fps} "
             f"-f x11grab -i :0.0 {audio_input} "
             f"-c:v libx264 -preset ultrafast -crf 23 {audio_codec_option} \"{self.output_file}\""
         )
-        # Start ffmpeg process in its own process group
+
         self.process = subprocess.Popen(command, shell=True, preexec_fn=os.setsid)
-        self.start_time = time.time()  # Record start time
-        self.update_timer.start(1000)  # Update recording information every second
+        self.start_time = time.time()
+        self.update_timer.start(1000)
         self.start_button.setEnabled(False)
         self.stop_button.setEnabled(True)
-        self.cancel_button.setEnabled(True)  # Enable cancel button when recording starts
+        self.cancel_button.setEnabled(True)
 
     def stop_recording(self):
         """Stops the recording and saves the output file."""
         if self.process:
-            # Send SIGINT to allow ffmpeg to finish writing the file cleanly
+
             os.killpg(os.getpgid(self.process.pid), signal.SIGINT)
             self.process.wait()
             self.process = None
         self.update_timer.stop()
         self.start_button.setEnabled(True)
         self.stop_button.setEnabled(False)
-        self.cancel_button.setEnabled(False)  # Disable cancel button when recording stops
-        # Here you can add any post-recording actions if needed
+        self.cancel_button.setEnabled(False)
+
 
     def cancel_recording(self):
         """Cancels the recording without saving the output file."""
         if self.process:
-            # Send SIGTERM to terminate the process immediately
+
             os.killpg(os.getpgid(self.process.pid), signal.SIGTERM)
             self.process.wait()
             self.process = None
             
-            # Remove the output file if it exists
+
             if os.path.exists(self.output_file):
                 try:
                     os.remove(self.output_file)
@@ -330,7 +330,7 @@ class ScreenRecorder(QWidget):
         self.start_button.setEnabled(True)
         self.stop_button.setEnabled(False)
         self.cancel_button.setEnabled(False)
-        # Reset recording information
+
         self.label_total_time.setText("Total Time: 0 s")
         self.label_fbs_in.setText("FBS In: 0")
         self.label_fbs_out.setText("FBS Out: 0")
@@ -340,10 +340,10 @@ class ScreenRecorder(QWidget):
         """Updates recording information display in real-time."""
         if self.start_time is None:
             return
-        # Update total recording time
+
         elapsed = int(time.time() - self.start_time)
         self.label_total_time.setText(f"Total Time: {elapsed} s")
-        # Simulate frames in/out using FPS and elapsed time
+
         try:
             fps = int(self.fps_combo.currentText())
         except ValueError:
@@ -351,10 +351,10 @@ class ScreenRecorder(QWidget):
         frames = fps * elapsed
         self.label_fbs_in.setText(f"FBS In: {frames}")
         self.label_fbs_out.setText(f"FBS Out: {frames}")
-        # Update file size if file exists
+
         if os.path.exists(self.output_file):
             size = os.path.getsize(self.output_file)
-            # Convert bytes to MB for display
+
             size_mb = size / (1024 * 1024)
             self.label_file_size.setText(f"File Size: {size_mb:.2f} MB")
 
@@ -365,22 +365,22 @@ class ScreenRecorder(QWidget):
             self.live_preview_running = False
             self.toggle_live_preview_button.setText("Start Live Preview")
             self.live_preview_display.setText("Live preview stopped")
-            # Disable preview frame rate combo box when preview is stopped
+
             self.preview_fps_combo.setEnabled(False)
         else:
             self.live_preview_timer.start(int(1000 / self.preview_frame_rate))
             self.live_preview_running = True
             self.toggle_live_preview_button.setText("Stop Live Preview")
-            # Enable preview frame rate combo box when preview is running
+
             self.preview_fps_combo.setEnabled(True)
 
     def update_live_preview(self):
         """Updates the live preview display with current screen capture."""
-        # Grab the primary screen and update the live preview display
+
         screen = QGuiApplication.primaryScreen()
         if screen:
             pixmap = screen.grabWindow(0)
-            # Scale pixmap to fit the preview area while keeping aspect ratio
+
             scaled_pixmap = pixmap.scaled(self.live_preview_display.size(), Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
             self.live_preview_display.setPixmap(scaled_pixmap)
 
