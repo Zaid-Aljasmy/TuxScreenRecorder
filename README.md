@@ -7,14 +7,14 @@ It provides a simple and user-friendly interface built with `PyQt6`.
 
 ##  Screenshots
 
-![App Logo](logo.jpg)
+![App Logo](screenshots/logo.jpg)
 
-![Recorder Tab](TSRRecorderTab.png)
+![Recorder Tab](screenshots/TSRRecorderTab.png)
 
-![Informations Tab](TSR-InfoTab.png)
+![Informations Tab](screenshots/TSR-InfoTab.png)
 
 ### AppImage coming soon!
-![AppImage coming soon](appimage.png)
+![AppImage coming soon](screenshots/appimage.png)
 
 
 ---
