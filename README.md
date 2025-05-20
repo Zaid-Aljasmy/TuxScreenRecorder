@@ -9,9 +9,9 @@ It provides a simple and user-friendly interface built with `PyQt6`.
 
 ![App Logo](screenshots/logo.jpg)
 
-![Recorder Tab](screenshots/TSRRecorderTab.png)
+![Recorder Tab](screenshots/screenshots1.png)
 
-![Informations Tab](screenshots/Screenshot from 2025-05-20 18-46-13.png)
+![Informations Tab](screenshots/Screenshot2.png)
 
 ### AppImage coming soon!
 ![AppImage coming soon](screenshots/appimage.png)
