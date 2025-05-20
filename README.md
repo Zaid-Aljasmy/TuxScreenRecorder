@@ -9,7 +9,7 @@ It provides a simple and user-friendly interface built with `PyQt6`.
 
 ![App Logo](screenshots/logo.jpg)
 
-![Recorder Tab](screenshots/screenshots1.png)
+![Recorder Tab](screenshots/screenshot1.png)
 
 ![Informations Tab](screenshots/Screenshot2.png)
 
