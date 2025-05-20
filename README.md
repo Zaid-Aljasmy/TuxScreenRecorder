@@ -11,7 +11,7 @@ It provides a simple and user-friendly interface built with `PyQt6`.
 
 ![Recorder Tab](screenshots/screenshot1.png)
 
-![Informations Tab](screenshots/Screenshot2.png)
+![Informations Tab](screenshots/screenshot2.png)
 
 ### AppImage coming soon!
 ![AppImage coming soon](screenshots/appimage.png)
