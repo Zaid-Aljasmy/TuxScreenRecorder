@@ -4,7 +4,7 @@ import subprocess
 import signal
 import time
 import datetime
-import random
+
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QComboBox,
     QHBoxLayout, QCheckBox, QTabWidget, QProgressBar, QGroupBox,
@@ -63,29 +63,29 @@ class ScreenRecorder(QWidget):
         self.full_screen_radio.setChecked(True)
         self.full_screen_radio.toggled.connect(lambda: self.set_recording_region("full_screen"))
         recording_region_layout.addWidget(self.full_screen_radio)
-        self.window_radio = QRadioButton("Select Window (Soon!)")
+        self.window_radio = QRadioButton("Select Window (Coming Soon!)")
         self.window_radio.toggled.connect(lambda: self.set_recording_region("window"))
         recording_region_layout.addWidget(self.window_radio)
         recording_region_group.setLayout(recording_region_layout)
         layout.addWidget(recording_region_group)
 
 
-        self.label_fps = QLabel("Select Frame Rate (FPS):")
+        self.label_fps = QLabel("Select Frame Rate (FPS)")
         layout.addWidget(self.label_fps)
         self.fps_combo = QComboBox()
-        self.fps_combo.addItems(["60", "30", "24", "Unlimited"])
+        self.fps_combo.addItems(["60", "30", "24"])
         layout.addWidget(self.fps_combo)
 
 
-        self.label_container = QLabel("Select Video Container:")
+        self.label_container = QLabel("Select Video Container")
         layout.addWidget(self.label_container)
         self.container_combo = QComboBox()
         self.container_combo.addItems(["mp4", "mkv"])
         layout.addWidget(self.container_combo)
         self.label_container_warning = QLabel(
-            "Warning: this format will produce unreadable files if the recording is interrupted!!\nConsider using MKV instead."
+            "Warning: this format will produce unreadable files if the recording is interrupted !!\nConsider using MKV instead."
         )
-        self.label_container_warning.setStyleSheet("color: red;")
+        self.label_container_warning.setStyleSheet("color: orange;")
         layout.addWidget(self.label_container_warning)
 
 
@@ -94,7 +94,7 @@ class ScreenRecorder(QWidget):
         layout.addWidget(self.audio_checkbox)
 
 
-        self.label_audio_source = QLabel("Select Audio Input Source:")
+        self.label_audio_source = QLabel("Select Audio Input Source")
         layout.addWidget(self.label_audio_source)
         self.audio_source_combo = QComboBox()
         self.audio_source_combo.addItems([
@@ -104,7 +104,7 @@ class ScreenRecorder(QWidget):
         layout.addWidget(self.audio_source_combo)
 
 
-        self.label_audio_codec = QLabel("Select Audio Codec:")
+        self.label_audio_codec = QLabel("Select Audio Codec")
         layout.addWidget(self.label_audio_codec)
         self.audio_codec_combo = QComboBox()
         self.audio_codec_combo.addItems(["mp3", "aac", "vorbis"])
@@ -193,16 +193,11 @@ class ScreenRecorder(QWidget):
         info_layout.addWidget(self.label_file_name)
         self.label_total_time = QLabel("Total Time: 0 s")
         info_layout.addWidget(self.label_total_time)
-        self.label_fbs_in = QLabel("FBS In: 0")
-        info_layout.addWidget(self.label_fbs_in)
-        self.label_fbs_out = QLabel("FBS Out: 0")
-        info_layout.addWidget(self.label_fbs_out)
         self.label_file_size = QLabel("File Size: 0 MB")
         info_layout.addWidget(self.label_file_size)
         info_group.setLayout(info_layout)
         layout.addWidget(info_group)
-
-
+        
         live_group = QGroupBox("Live Preview")
         live_layout = QVBoxLayout()
         self.live_preview_display = QLabel("Live preview not running")
@@ -226,8 +221,8 @@ class ScreenRecorder(QWidget):
         self.preview_fps_combo.setCurrentText(str(self.preview_frame_rate))
         self.preview_fps_combo.currentIndexChanged.connect(self.set_preview_frame_rate)
 
-        self.preview_note_label = QLabel("Note: previewing requires extra CPU time (especially at high frame rates).")
-        self.preview_note_label.setStyleSheet("font-size: 14px; color: orange;")
+        self.preview_note_label = QLabel("Note: previewing requires extra CPU time (especially at high frame rates)")
+        self.preview_note_label.setStyleSheet("font-size: 19px; color: orange;")
         live_layout.addWidget(self.preview_note_label)
 
         live_group.setLayout(live_layout)
@@ -330,10 +325,7 @@ class ScreenRecorder(QWidget):
         self.start_button.setEnabled(True)
         self.stop_button.setEnabled(False)
         self.cancel_button.setEnabled(False)
-
         self.label_total_time.setText("Total Time: 0 s")
-        self.label_fbs_in.setText("FBS In: 0")
-        self.label_fbs_out.setText("FBS Out: 0")
         self.label_file_size.setText("File Size: 0 MB")
 
     def update_info(self):
@@ -349,8 +341,8 @@ class ScreenRecorder(QWidget):
         except ValueError:
             fps = 30
         frames = fps * elapsed
-        self.label_fbs_in.setText(f"FBS In: {frames}")
-        self.label_fbs_out.setText(f"FBS Out: {frames}")
+        #self.label_fbs_in.setText(f"FBS In: {frames}")
+        #self.label_fbs_out.setText(f"FBS Out: {frames}")
 
         if os.path.exists(self.output_file):
             size = os.path.getsize(self.output_file)
